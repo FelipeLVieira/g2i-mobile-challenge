@@ -89,10 +89,9 @@ function Questions(){
     let currentCategory = "";
     let questionText = "";
     let correct_Answer = "";
-    
+
     if(currentQuestion <= questions.length){
         const tempQuestion = questions[currentQuestion-1]
-        console.log(tempQuestion)
         if (tempQuestion != undefined){
             currentCategory = tempQuestion.category;
             questionText = tempQuestion.question;
