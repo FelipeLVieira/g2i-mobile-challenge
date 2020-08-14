@@ -12,15 +12,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
 
-    title:{
-        fontFamily: 'Archivo_400Regular',
-        fontSize: 25,
-        marginTop: '10%',
-        color: white,
-    },
-
-    titleBold:{
-        fontFamily: 'Archivo_600SemiBold',
+    questionCategoryContainer: {
+        top: '8%', 
+        position: 'absolute', 
+        alignSelf: 'center'
     },
 
     buttonOptionsContainer:{

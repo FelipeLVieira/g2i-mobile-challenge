@@ -68,7 +68,7 @@ function Results(){
                         return <RankingItem key={index} index={index+1} rankingItemProps={ element } />
                     })}
                 </ScrollView>
-
+                <View style={styles.divisoryLine}/>
                 <RectButton 
                     onPress={handleNavigateToLanding}
                     style={styles.buttonPlayAgain}

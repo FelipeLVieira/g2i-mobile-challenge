@@ -47,6 +47,7 @@ function Questions(){
 
     useEffect(() => { 
         const total = correct + wrong
+        
         if (!loading){
             if (total == questions.length){
                 SQL.addHistory(correct, total, name);
@@ -89,42 +90,42 @@ function Questions(){
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode={constants.IMAGE_BACKGROUND_RESIZE_MODE} source={redBackground} style={styles.content}>
-                
-                <View style={{top: '8%', position: 'absolute', alignSelf: 'center'}}>
-                    <QuestionCategory category={questions[currentQuestion-1].category}/>
-                </View>
 
-                <View style={styles.questionBox}>
-                        <QuestionItem question={questions[currentQuestion-1].question}/>
+                    <View style={styles.questionCategoryContainer}>
+                        <QuestionCategory category={questions[currentQuestion-1].category}/>
+                    </View>
 
-                        <QuestionCounter currQuestion={currentQuestion} numQuestions={questions.length}/>
-                </View>
-                <View style={styles.buttonsContainer}>
-                    <View style={styles.buttonOptionsContainer}>
-                        <RectButton 
-                            onPress={() => setSelectedAnswer(constants.TRUE)}
-                            style={selectedAnswer == constants.TRUE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
+                    <View style={styles.questionBox}>
+                            <QuestionItem question={questions[currentQuestion-1].question}/>
 
-                            <Text style={styles.buttonOptionText}>Yes</Text>
-                        </RectButton>
-                        
-                        <RectButton 
-                            onPress={() => setSelectedAnswer(constants.FALSE)}
-                            style={selectedAnswer == constants.FALSE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
+                            <QuestionCounter currQuestion={currentQuestion} numQuestions={questions.length}/>
+                    </View>
+                    <View style={styles.buttonsContainer}>
+                        <View style={styles.buttonOptionsContainer}>
+                            <RectButton 
+                                onPress={() => setSelectedAnswer(constants.TRUE)}
+                                style={selectedAnswer == constants.TRUE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
+
+                                <Text style={styles.buttonOptionText}>Yes</Text>
+                            </RectButton>
                             
-                            <Text style={styles.buttonOptionText}>No</Text>
-                        </RectButton>
-                    </View>
-                
-                    <View style={styles.buttonAnswerContainer}>
-                        <RectButton 
-                            onPress={() => processAnswer(selectedAnswer, questions[currentQuestion-1].correct_answer)}
-                            style={styles.buttonAnswer}>
+                            <RectButton 
+                                onPress={() => setSelectedAnswer(constants.FALSE)}
+                                style={selectedAnswer == constants.FALSE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
+                                
+                                <Text style={styles.buttonOptionText}>No</Text>
+                            </RectButton>
+                        </View>
+                    
+                        <View style={styles.buttonAnswerContainer}>
+                            <RectButton 
+                                onPress={() => processAnswer(selectedAnswer, questions[currentQuestion-1].correct_answer)}
+                                style={styles.buttonAnswer}>
 
-                            <Text style={styles.buttonAnswerText}>Answer</Text>
-                        </RectButton>
+                                <Text style={styles.buttonAnswerText}>Answer</Text>
+                            </RectButton>
+                        </View>
                     </View>
-                </View>
             </ImageBackground>
         </View>
     )
