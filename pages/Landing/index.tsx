@@ -10,6 +10,8 @@ import { RectButton } from 'react-native-gesture-handler';
 
 function Landing(){
 
+    const { navigate } = useNavigation();
+
     useEffect(() => {
         const backAction = () => {
           () => null
@@ -22,7 +24,7 @@ function Landing(){
         );
     }, []);
 
-    const { navigate } = useNavigation();
+    
 
     function handleNavigateToPlayerInfo(){
         navigate(constants.PLAYER_INFO_PAGE);

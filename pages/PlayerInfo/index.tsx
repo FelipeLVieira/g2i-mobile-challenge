@@ -11,6 +11,7 @@ import PlayerContext from '../../contexts/player.js';
 function PlayerInfo(){
 
     const { navigate } = useNavigation();
+    
     const { setName } = useContext(PlayerContext);
 
     useEffect(() => {

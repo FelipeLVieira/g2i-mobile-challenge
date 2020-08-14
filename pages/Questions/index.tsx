@@ -19,7 +19,7 @@ function Questions(){
     const { navigate } = useNavigation();
 
     const [loading, setLoading] = useState<boolean>(true);
-    const [ selectedAnswer, setSelectedAnswer ] = useState<string>("");
+    const [selectedAnswer, setSelectedAnswer ] = useState<string>("");
     const [questions, setQuestions] = useState<any>(null);
     const [currentQuestion, setCurrentQuestion] = useState<number>(1);
 
@@ -50,17 +50,16 @@ function Questions(){
         
         if (!loading){
             if (total == questions.length){
+                
                 SQL.addHistory(correct, total, name);
+                setCurrentQuestion(0);
                 navigate(constants.RESULTS_PAGE);
-                setLoading(true);
-                return;
             }
 
-            if (currentQuestion <= questions.length){
+            if (currentQuestion < questions.length){
                 setCurrentQuestion(currentQuestion+1);
-                setSelectedAnswer("");
-                return;
             }
+            setSelectedAnswer("");
         }
     }, [correct, wrong])
 
@@ -87,47 +86,61 @@ function Questions(){
         )
     }
 
+    let currentCategory = "";
+    let questionText = "";
+    let correct_Answer = "";
+    
+    if(currentQuestion <= questions.length){
+        const tempQuestion = questions[currentQuestion-1]
+        console.log(tempQuestion)
+        if (tempQuestion != undefined){
+            currentCategory = tempQuestion.category;
+            questionText = tempQuestion.question;
+            correct_Answer = tempQuestion.correct_answer;
+        }
+    }
+    
     return (
-        <View style={styles.container}>
-            <ImageBackground resizeMode={constants.IMAGE_BACKGROUND_RESIZE_MODE} source={redBackground} style={styles.content}>
+    <View style={styles.container}>
+        <ImageBackground resizeMode={constants.IMAGE_BACKGROUND_RESIZE_MODE} source={redBackground} style={styles.content}>
 
-                    <View style={styles.questionCategoryContainer}>
-                        <QuestionCategory category={questions[currentQuestion-1].category}/>
-                    </View>
+                <View style={styles.questionCategoryContainer}>
+                    <QuestionCategory category={currentCategory}/>
+                </View>
 
-                    <View style={styles.questionBox}>
-                            <QuestionItem question={questions[currentQuestion-1].question}/>
+                <View style={styles.questionBox}>
+                        <QuestionItem question={questionText}/>
 
-                            <QuestionCounter currQuestion={currentQuestion} numQuestions={questions.length}/>
-                    </View>
-                    <View style={styles.buttonsContainer}>
-                        <View style={styles.buttonOptionsContainer}>
-                            <RectButton 
-                                onPress={() => setSelectedAnswer(constants.TRUE)}
-                                style={selectedAnswer == constants.TRUE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
+                        <QuestionCounter currQuestion={currentQuestion} numQuestions={questions.length}/>
+                </View>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonOptionsContainer}>
+                        <RectButton 
+                            onPress={() => setSelectedAnswer(constants.TRUE)}
+                            style={selectedAnswer == constants.TRUE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
 
-                                <Text style={styles.buttonOptionText}>Yes</Text>
-                            </RectButton>
+                            <Text style={styles.buttonOptionText}>Yes</Text>
+                        </RectButton>
+                        
+                        <RectButton 
+                            onPress={() => setSelectedAnswer(constants.FALSE)}
+                            style={selectedAnswer == constants.FALSE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
                             
-                            <RectButton 
-                                onPress={() => setSelectedAnswer(constants.FALSE)}
-                                style={selectedAnswer == constants.FALSE ? styles.buttonOptionSelected : styles.buttonOptionNotSelected}>
-                                
-                                <Text style={styles.buttonOptionText}>No</Text>
-                            </RectButton>
-                        </View>
-                    
-                        <View style={styles.buttonAnswerContainer}>
-                            <RectButton 
-                                onPress={() => processAnswer(selectedAnswer, questions[currentQuestion-1].correct_answer)}
-                                style={styles.buttonAnswer}>
-
-                                <Text style={styles.buttonAnswerText}>Answer</Text>
-                            </RectButton>
-                        </View>
+                            <Text style={styles.buttonOptionText}>No</Text>
+                        </RectButton>
                     </View>
-            </ImageBackground>
-        </View>
+                
+                    <View style={styles.buttonAnswerContainer}>
+                        <RectButton 
+                            onPress={() => processAnswer(selectedAnswer, correct_Answer)}
+                            style={styles.buttonAnswer}>
+
+                            <Text style={styles.buttonAnswerText}>Answer</Text>
+                        </RectButton>
+                    </View>
+                </View>
+        </ImageBackground>
+    </View>
     )
 }
 

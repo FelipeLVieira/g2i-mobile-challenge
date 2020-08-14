@@ -14,21 +14,19 @@ function Results(){
     const [allResults, setAllResults] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const { name, correct, wrong } = useContext(PlayerContext);
+    const { name, correct, wrong, clearContext } = useContext(PlayerContext);
 
     const { navigate } = useNavigation();
 
     useEffect(() => {
 
-        console.log()
-    
         const backAction = () => {
           () => null
           return true;
         };
 
         (async () => {
-            const resultSet = SQL.getHistory().then((resultSet:any) => {
+            await SQL.getHistory().then((resultSet:any) => {
                 setAllResults(resultSet)
                 setLoading(false);
             });
@@ -41,6 +39,7 @@ function Results(){
     }, []);
 
     const handleNavigateToLanding = () => {
+        clearContext();
         navigate(constants.LANDING_PAGE);
     }
 
@@ -63,7 +62,7 @@ function Results(){
                     Ranking
                 </Text>
 
-                <ScrollView style={{ flex: 1, maxHeight: '50%'}}>
+                <ScrollView style={styles.scrollView}>
                     {allResults.map( (element:any, index:number) => {
                         return <RankingItem key={index} index={index+1} rankingItemProps={ element } />
                     })}
