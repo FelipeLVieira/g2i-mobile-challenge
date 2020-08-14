@@ -64,6 +64,11 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
 
+    scrollView:{ 
+        flex: 1, 
+        maxHeight: '50%'
+    }
+
 });
 
 export default styles;
