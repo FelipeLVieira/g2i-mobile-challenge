@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: white,
-        justifyContent: 'center',
         width: "100%",
         height: "100%",
     },
@@ -16,7 +15,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Archivo_400Regular',
         padding: '5%',
         fontSize: 30,
-        marginTop: '20%',
         color: white,
         textAlign: 'center',
     },
@@ -42,16 +40,16 @@ const styles = StyleSheet.create({
 
     buttonBeginText:{
         fontFamily: 'Archivo_600SemiBold',
-        fontSize: 40,
+        fontSize: 30,
         textAlign: 'center',
         color: white
     },
 
     textInput:{
-        height: '7%',
-        fontSize: 25,
+        fontSize: 20,
         width: '80%',
-        marginTop: 50,
+        height: '8%',
+        marginTop: '10%',
         backgroundColor: white,
         borderRadius: 15,
         paddingLeft: '5%',

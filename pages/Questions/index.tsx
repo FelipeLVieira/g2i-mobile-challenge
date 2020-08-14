@@ -10,6 +10,7 @@ import PlayerContext from '../../contexts/player.js';
 import QuestionItem from '../../components/QuestionItem';
 import QuestionCategory from '../../components/QuestionCategory';
 import QuestionCounter from '../../components/QuestionCounter';
+import SQL from '../../SQLite/SQLite';
 
 function Questions(){
 
@@ -45,16 +46,19 @@ function Questions(){
     }, []);
 
     useEffect(() => { 
-
+        const total = correct + wrong
         if (!loading){
-            if (correct + wrong == questions.length){
-                setLoading(true)
+            if (total == questions.length){
+                SQL.addHistory(correct, total, name);
                 navigate(constants.RESULTS_PAGE);
+                setLoading(true);
+                return;
             }
 
             if (currentQuestion <= questions.length){
                 setCurrentQuestion(currentQuestion+1);
                 setSelectedAnswer("");
+                return;
             }
         }
     }, [correct, wrong])

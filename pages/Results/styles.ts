@@ -11,6 +11,13 @@ const styles = StyleSheet.create({
         height: "100%",
     },
 
+    titleBold:{
+        fontFamily: 'Archivo_600SemiBold',
+        fontSize: 30,
+        color: white,
+        textAlign: 'center',
+    },
+
     resultText:{
         top: '8%',
         position: 'absolute',
@@ -20,6 +27,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         marginBottom: '15%',
         color: white
+    },
+
+    divisoryLine: {
+        borderBottomColor: white,
+        borderWidth: 1
     },
 
     content:{
@@ -44,7 +56,13 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
         color: white
-    }
+    },
+
+    loadingView:{
+        flex:1, 
+        justifyContent: "center", 
+        alignItems: "center"
+    },
 
 });
 

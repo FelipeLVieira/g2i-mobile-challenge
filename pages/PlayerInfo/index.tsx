@@ -35,39 +35,38 @@ function PlayerInfo(){
     }
 
     return (
-        
-        <View style={styles.container}>
-            <ImageBackground resizeMode={constants.IMAGE_BACKGROUND_RESIZE_MODE} source={blueBackground} style={styles.content}>
+            <View style={styles.container}>
+                <ImageBackground resizeMode={constants.IMAGE_BACKGROUND_RESIZE_MODE} source={blueBackground} style={styles.content}>
 
-                <FadeInView animLength={1500}>
-                    <Text style={[styles.title, styles.titleBold]}> 
-                        Before we start...
-                    </Text>
-                </FadeInView>
-
-                <FadeInView animLength={2000}>
-                    <Text style={[styles.title, styles.titleBold]}> 
-                        Please, insert your name below
-                    </Text>
-                </FadeInView>
-
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Insert your name here"
-                    onChangeText= {(text) => setPlayerName(text)}
-                />
-                
-                <View style={styles.buttonContainer}>
-                    <RectButton 
-                        onPress={handleNavigateToQuestion}
-                        style={styles.buttonStart}>
-                        <Text style={styles.buttonBeginText}>
-                            Start
+                    <FadeInView animLength={1500}>
+                        <Text style={[styles.title, styles.titleBold]}> 
+                            Before we start...
                         </Text>
-                    </RectButton>
-                </View>
-            </ImageBackground>
-        </View>
+                    </FadeInView>
+
+                    <FadeInView animLength={2000}>
+                        <Text style={[styles.title, styles.titleBold]}> 
+                            Please, insert your name below
+                        </Text>
+                    </FadeInView>
+
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Insert your name here"
+                        onChangeText= {(text) => setPlayerName(text)}
+                    />
+                    
+                    <View style={styles.buttonContainer}>
+                        <RectButton 
+                            onPress={handleNavigateToQuestion}
+                            style={styles.buttonStart}>
+                            <Text style={styles.buttonBeginText}>
+                                Start
+                            </Text>
+                        </RectButton>
+                    </View>
+                </ImageBackground>
+            </View>
     )
 }
 
